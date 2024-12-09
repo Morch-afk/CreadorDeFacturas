@@ -18,7 +18,7 @@ createApp({
           category: item.category,
           stock: item.stock || "No disponible",
           image: item.image,
-          colors: item.colors || [] // Suponemos que 'colors' es un array de colores
+          colors: item.colors || [] 
         }));
       } catch (error) {
         console.error("Error al obtener los datos:", error);

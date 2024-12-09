@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Datos del receptor</h1>
+            <input v-model="datosReceptor.nombre" placeholder="Nombre">
+            <input v-model="datosReceptor.direccion" placeholder="Dirección">
+        </header>
+        <main>
+            <h2>Conceptos</h2>
+            <div v-for="(concepto, index) in conceptos" :key="index" class="concepto">
+                <input v-model.number="concepto.cantidad" type="number" placeholder="Cantidad">
+                <input v-model="concepto.descripcion" type="text" placeholder="Descripción">
+                <input v-model.number="concepto.valorUnitario" type="number" placeholder="Valor Unitario">
+                <input v-model.number="concepto.importe" :value="concepto.cantidad * concepto.valorUnitario" type="number" placeholder="Importe" readonly>
+                <button @click="eliminarConcepto(index)">Eliminar</button>
+            </div>
+            <button @click="agregarConcepto">Agregar Concepto</button>
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>{{ subTotal.toFixed(2) }}</td>
+                </tr>
+                <tr>
+                    <td>IVA (16%)</td>
+                    <td>{{ iva.toFixed(2) }}</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>{{ total.toFixed(2) }}</td>
+                </tr>
+            </table>
+        </main>
+        <footer>
+            <p>Mauricio Alejandro Romero Chamorro</p>
+        </footer>
+    </div>
+    <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
